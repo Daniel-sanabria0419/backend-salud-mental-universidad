@@ -1,13 +1,12 @@
-// src/application/dto/CreateNotificacionDTO.ts
-export interface CreateNotificacionDTO {
-  idEstudiante: number;
-  idProfesional?: number | null;
-  mensaje: string;
+// Crear notificación
+export interface CreateNotificationDTO {
+    idEstudiante: number;
+    idProfesional?: number | null;
+    mensaje: string;
 }
 
-// src/application/dto/UpdateNotificacionDTO.ts
-export interface UpdateNotificacionDTO {
-  idNotificacion: number;
-  mensaje?: string;
-  leido?: boolean;
+// Actualizar notificación
+export interface UpdateNotificationDTO {
+    mensaje?: string;
+    leido?: boolean;
 }

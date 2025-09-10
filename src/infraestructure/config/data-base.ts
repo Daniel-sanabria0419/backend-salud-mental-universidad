@@ -3,6 +3,7 @@ import { StudentEntity } from "../entities/StudentEntity";
 import envs from "../config/environment-vars";
 import  dotenv  from "dotenv";
 import { ResourceEntity } from "../entities/ResourceEntity";
+import { NotificationEntity } from "../entities/NotificationEntity";
 
  dotenv.config();
  export const AppDataSource = new DataSource({
@@ -15,7 +16,7 @@ import { ResourceEntity } from "../entities/ResourceEntity";
     schema: envs.DB_SCHEMA,
     synchronize: true,
     logging: false,
-    entities: [StudentEntity, ResourceEntity]
+    entities: [StudentEntity, ResourceEntity, NotificationEntity],
   });
 
   // CONEXION A LA BASE DE DATOS

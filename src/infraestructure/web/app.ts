@@ -1,6 +1,7 @@
 import express, { Response, Request } from "express";
 import userRoutes from "../routes/UserRoutes";
 import resourceRoutes from "../routes/ResourceRoutes";
+import notificationRoutes from "../routes/NotificationRoutes";
 
 import cors from "cors";
 
@@ -21,7 +22,8 @@ class App {
   private routes(): void {
     this.app.use("/api", userRoutes);
     this.app.use("/api", resourceRoutes);
-    this
+    this.app.use("/api", notificationRoutes);
+
   }
  
   getApp() {

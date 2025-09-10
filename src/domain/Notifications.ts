@@ -1,10 +1,8 @@
-export class Notificacion {
-  constructor(
-    public idNotificacion: number,
-    public idEstudiante: number,
-    public idProfesional: number | null,
-    public mensaje: string,
-    public fecha: Date,
-    public leido: boolean
-  ) {}
+export interface Notification {
+    id: number;
+    idEstudiante: number;
+    idProfesional?: number | null;
+    mensaje: string;
+    fecha: Date;
+    leido: boolean;
 }
