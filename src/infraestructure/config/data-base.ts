@@ -4,6 +4,10 @@ import envs from "../config/environment-vars";
 import  dotenv  from "dotenv";
 import { ResourceEntity } from "../entities/ResourceEntity";
 import { NotificationEntity } from "../entities/NotificationEntity";
+import { SurveyEntity } from "../entities/SurveyEntity";
+import { QuestionEntity } from "../entities/QuestionEntity";
+import { AnswerEntity } from "../entities/AnswerEntity";
+import { ProfessionalEntity } from "../entities/ProfessionalEntity";
 
  dotenv.config();
  export const AppDataSource = new DataSource({
@@ -16,7 +20,7 @@ import { NotificationEntity } from "../entities/NotificationEntity";
     schema: envs.DB_SCHEMA,
     synchronize: true,
     logging: false,
-    entities: [StudentEntity, ResourceEntity, NotificationEntity],
+    entities: [StudentEntity, ResourceEntity, NotificationEntity, SurveyEntity, QuestionEntity,AnswerEntity, ProfessionalEntity],
   });
 
   // CONEXION A LA BASE DE DATOS

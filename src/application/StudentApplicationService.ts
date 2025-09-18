@@ -9,22 +9,24 @@ export class StudentApplicationService {
         this.port = port;
     }
 
-    async login(email: string, password: string): Promise<string> {
-        const existingUser = await this.port.getStudentByEmail(email);
-        if (!existingUser) {
-            throw new Error("Credentials are Invalid");
-        }
-        const passwordMath = await bcrypt.compare(password, existingUser.password);
-        if (!passwordMath) {
-            throw new Error("Credentials are Invalid");
-        }
-        const token = AuthApplication.generateToken({
-            id: existingUser.id,
-            email: existingUser.mail
-        });
- 
-        return token;
+   async login(email: string, password: string): Promise<{ token: string; user: any }> {
+    const existingUser = await this.port.getStudentByEmail(email);
+    if (!existingUser) {
+        throw new Error("Credentials are Invalid");
     }
+
+    const passwordMatch = await bcrypt.compare(password, existingUser.password);
+    if (!passwordMatch) {
+        throw new Error("Credentials are Invalid");
+    }
+
+    const token = AuthApplication.generateToken({
+        id: existingUser.id,
+        email: existingUser.mail
+    });
+
+    return { token, user: existingUser };
+}
     
     async createStudent(user:Omit<Students, "id">):Promise<number>{
         const existingUser = await this.port.getStudentByEmail(user.mail);
