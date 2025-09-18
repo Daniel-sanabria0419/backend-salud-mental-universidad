@@ -8,6 +8,7 @@ import { SurveyEntity } from "../entities/SurveyEntity";
 import { QuestionEntity } from "../entities/QuestionEntity";
 import { AnswerEntity } from "../entities/AnswerEntity";
 import { ProfessionalEntity } from "../entities/ProfessionalEntity";
+import { OptionAnswerEntity } from "../entities/OptionAnswerEntity";
 
  dotenv.config();
  export const AppDataSource = new DataSource({
@@ -20,7 +21,7 @@ import { ProfessionalEntity } from "../entities/ProfessionalEntity";
     schema: envs.DB_SCHEMA,
     synchronize: true,
     logging: false,
-    entities: [StudentEntity, ResourceEntity, NotificationEntity, SurveyEntity, QuestionEntity,AnswerEntity, ProfessionalEntity],
+    entities: [StudentEntity, ResourceEntity, NotificationEntity, SurveyEntity, QuestionEntity,AnswerEntity, ProfessionalEntity, OptionAnswerEntity],
   });
 
   // CONEXION A LA BASE DE DATOS

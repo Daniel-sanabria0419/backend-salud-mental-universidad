@@ -24,6 +24,11 @@ router.get("/questions/:id", authenticateToken, async (req, res) => {
   await questionController.getQuestionById(req, res);
 });
 
+
+router.get("/questionsBySurveyId/:id", authenticateToken, async (req, res) => {
+  await questionController.questionsBySurveyId(req, res);
+});
+
 router.put("/questions/:id", authenticateToken, async (req, res) => {
   await questionController.updateQuestion(req, res);
 });

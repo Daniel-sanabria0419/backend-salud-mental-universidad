@@ -1,6 +1,9 @@
-export interface Question {
-  id: number;
-  idEncuesta: number;
-  texto: string;
-  idTipoPregunta: number;
+export class Question {
+  constructor(
+  public id: number,
+  public idEncuesta: number,
+  public texto: string,
+  public idTipoPregunta: number
+){}
+  
 }

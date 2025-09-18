@@ -13,7 +13,7 @@ export class StudentEntity {
     apellido!: string;
 
 
-    @Column({ type: 'character varying', length: 100 })
+    @Column({ type: 'character varying', length: 150 })
     correo!: string;
 
     @Column({ type: 'character varying', length: 200 })
