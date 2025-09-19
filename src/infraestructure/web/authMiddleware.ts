@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { Request, Response, NextFunction } from "express";
 import { AuthApplication } from "../../application/AuthApplication";
 
@@ -19,25 +19,3 @@ export function authenticateToken(request: Request, response:Response, next:Next
         return;
     }
 }
-=======
-import { Request, Response, NextFunction } from "express";
-import { AuthApplication } from "../../application/AuthApplication";
-
-export function authenticateToken(request: Request, response:Response, next:NextFunction):void{
-    const authHeader = request.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1];
-
-    if(!token){
-        response.status(401).json({mesagge:"Token Requerido"})
-        return;
-    }
-    try {
-        const payload = AuthApplication.verifyToken(token);
-        (request as any).user = payload;
-        next();
-    } catch (error) {
-        response.status(403).json({message:"Token invalidado o expirado"})
-        return;
-    }
-}
->>>>>>> 2b14ab01396e9883608d676b6e1ff018bea2a53f

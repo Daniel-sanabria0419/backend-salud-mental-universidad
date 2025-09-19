@@ -23,11 +23,8 @@ export class QuestionApplicationService {
   delete(id: number) {
     return this.questionRepo.delete(id);
   }
-<<<<<<< HEAD
-=======
 
   findAllBySurveyId(surveyId: number) {
       return this.questionRepo.findAllBySurveyId(surveyId);
     }
->>>>>>> 2b14ab01396e9883608d676b6e1ff018bea2a53f
 }

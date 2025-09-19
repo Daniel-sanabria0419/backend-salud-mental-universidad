@@ -33,8 +33,6 @@ export class QuestionController {
     }
   }
 
-<<<<<<< HEAD
-=======
 
   async questionsBySurveyId(req: Request, res: Response): Promise<Response> {
     try {
@@ -47,7 +45,6 @@ export class QuestionController {
     }
   }
 
->>>>>>> 2b14ab01396e9883608d676b6e1ff018bea2a53f
   async getQuestionById(req: Request, res: Response): Promise<Response> {
     try {
       const id = parseInt(req.params.id);
@@ -84,11 +81,7 @@ export class QuestionController {
       if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
 
       const deleted = await this.app.delete(id);
-<<<<<<< HEAD
-      if (!deleted) return res.status(404).json({ message: "Pregunta no encontrada" });
-=======
       return res.status(404).json({ message: "Pregunta no encontrada" });
->>>>>>> 2b14ab01396e9883608d676b6e1ff018bea2a53f
 
       return res.status(200).json({ message: "Pregunta eliminada correctamente" });
     } catch (error) {

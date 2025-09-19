@@ -33,8 +33,14 @@ export class OptionAnswerController {
     res.status(204).send();
   };
 
-  findByQuestionId = async (req: Request, res: Response) => {
-    const options = await this.service.findByQuestionId(Number(req.params.questionId));
-    res.json(options);
-  };
+ findByQuestionId = async (req: Request, res: Response) => {
+  const questionId = Number(req.params.id);
+
+  if (isNaN(questionId)) {
+    return res.status(400).json({ error: "El id_pregunta debe ser un número válido" });
+  }
+
+  const options = await this.service.findByQuestionId(questionId);
+  res.json(options);
+};
 }

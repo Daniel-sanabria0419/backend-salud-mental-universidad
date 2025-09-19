@@ -9,20 +9,32 @@ export class AnswerController {
     this.app = app;
   }
 
-  async createAnswer(req: Request, res: Response): Promise<Response> {
-    try {
-      const { idEstudiante, idPregunta, idOpcion } = req.body as CreateAnswerDTO;
+ async createAnswer(req: Request, res: Response): Promise<Response> {
+  try {
+    const { responses } = req.body; // 👈 viene como array
 
-      if (!idEstudiante || !idPregunta || !idOpcion) {
-        return res.status(400).json({ error: "Todos los campos son requeridos" });
-      }
-
-      const answer = await this.app.create({ idEstudiante, idPregunta, idOpcion });
-      return res.status(201).json({ message: "Respuesta registrada", answer });
-    } catch (error) {
-      return res.status(500).json({ message: "Error en el servidor" });
+    if (!Array.isArray(responses) || responses.length === 0) {
+      return res.status(400).json({ error: "Se requiere un array de respuestas" });
     }
+
+    // Validar que cada respuesta tenga lo necesario
+    for (const r of responses) {
+      if (!r.idEstudiante || !r.idPregunta) {
+        return res.status(400).json({ error: "Cada respuesta debe incluir idEstudiante, idPregunta e idOpcion" });
+      }
+    }
+
+    // Guardar todas en paralelo
+    const savedAnswers = await Promise.all(
+      responses.map(r => this.app.create(r))
+    );
+
+    return res.status(201).json({ message: "Respuestas registradas", savedAnswers });
+  } catch (error) {
+    console.error("Error al guardar respuestas:", error);
+    return res.status(500).json({ message: "Error en el servidor" });
   }
+}
 
   async getAllAnswers(_req: Request, res: Response): Promise<Response> {
     try {

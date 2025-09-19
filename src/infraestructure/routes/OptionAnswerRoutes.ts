@@ -33,7 +33,7 @@ router.delete("/option-answers/:id", authenticateToken, async (req, res) => {
 });
 
 // Endpoint extra: buscar por id_pregunta
-router.get("/option-answers/by-question/:idQuestion", authenticateToken, async (req, res) => {
+router.get("/option-answers/by-question/:id", authenticateToken, async (req, res) => {
   await optionAnswerController.findByQuestionId(req, res);
 });
 

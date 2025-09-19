@@ -1,39 +1,11 @@
 import { AppDataSource } from "../config/data-base";
 import { QuestionEntity } from "../entities/QuestionEntity";
-<<<<<<< HEAD
-import { QuestionRepository } from "../../domain/QuestionPorts";
-import { CreateQuestionDTO, UpdateQuestionDTO } from "../DTO/QuestionDTO";
-=======
 import { Question } from '../../domain/Question';
 import { QuestionRepository } from "../../domain/QuestionPorts";
->>>>>>> 2b14ab01396e9883608d676b6e1ff018bea2a53f
 
 export class QuestionAdapter implements QuestionRepository {
   private repo = AppDataSource.getRepository(QuestionEntity);
 
-<<<<<<< HEAD
-  async create(data: CreateQuestionDTO) {
-    const newQuestion = this.repo.create(data);
-    return await this.repo.save(newQuestion);
-  }
-
-  async findAll() {
-    return await this.repo.find();
-  }
-
-  async findById(id: number) {
-    return await this.repo.findOneBy({ id });
-  }
-
-  async update(id: number, data: UpdateQuestionDTO) {
-    await this.repo.update(id, data);
-    return await this.findById(id);
-  }
-
-  async delete(id: number) {
-    const result = await this.repo.delete(id);
-    return result.affected ? true : false;
-=======
   async create(question: Question): Promise<Question> {
     const entity = this.repo.create(question);
     const saved = await this.repo.save(entity);
@@ -67,6 +39,5 @@ export class QuestionAdapter implements QuestionRepository {
     return questions.map(
       q => new Question(q.id, q.idEncuesta, q.texto, q.idTipoPregunta)
     );
->>>>>>> 2b14ab01396e9883608d676b6e1ff018bea2a53f
   }
 }
